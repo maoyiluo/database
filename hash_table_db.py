@@ -17,7 +17,7 @@ class database:
     def search(self,key):
         if key in self.dict:
             return self.data[self.dict.get(key)]
-        return "Not found"
+        return "not present"
 
     def delete(self,key):
         self.dict.pop(key)

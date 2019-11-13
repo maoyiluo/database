@@ -20,7 +20,7 @@ class database:
         if self.dict.has_key(key):
             value = self.data[self.dict.get(key)]
             return value
-        return "Not found"
+        return "not present"
 
     def delete(self,key):
         self.dict.pop(key)
