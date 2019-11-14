@@ -1,3 +1,7 @@
+import sys
+import time
+from database import *
+
 class database:
     def __init__(self):
         self.data = []
@@ -17,8 +21,13 @@ class database:
     def search(self,key):
         if key in self.dict:
             return self.data[self.dict.get(key)]
-        return "not present"
+        return "NOT PRESENT"
 
     def delete(self,key):
         self.dict.pop(key)
+
+if __name__ == "__main__":
+    db = database()
+    print("HASH TABLE:")
+    print_result(db, sys.argv[1])
     

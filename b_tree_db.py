@@ -1,4 +1,7 @@
+import sys
+import time
 from BTrees.IIBTree import IIBTree
+from database import *
 
 class database:
     def __init__(self):
@@ -20,17 +23,13 @@ class database:
         if self.dict.has_key(key):
             value = self.data[self.dict.get(key)]
             return value
-        return "not present"
+        return "NOT PRESENT"
 
     def delete(self,key):
         self.dict.pop(key)
     
 
 if __name__ == "__main__":
-    x = database()
-    x.insert(1,1)
-    print(x.search(1))
-    x.insert(1,2)
-    print(x.search(1))
-    x.delete(1)
-    print(x.search(1))
+    db = database()
+    print("B-TREE:")
+    print_result(db, sys.argv[1])

@@ -1,7 +1,7 @@
-from hash_table_db import database as ht_database
-from b_tree_db import database as bt_database
+import time
+import sys
 
-def insert(bt, ht):
+def insert(db):
     file = open("myindex.txt",'r')
     data = file.readlines()
     firstline = True
@@ -18,11 +18,10 @@ def insert(bt, ht):
                 print("key or value is not a number.")
                 print("The input line is:"," ",key," ",value)
             continue
-        ht.insert(key,value)
-        bt.insert(key,value)
+        db.insert(key,value)
 
-def operation(ht,bt):
-    file = open("operations.txt",'r')
+def operation(db,file):
+    file = open(file,'r')
     data = file.readlines()
     for entry in data:
         entry = entry.strip('\n')
@@ -33,8 +32,10 @@ def operation(ht,bt):
                 arguement = int(arguement)
             except ValueError:
                 print("fail to parse the input",operate, arguement,seq=" ")
-            print(ht.search(arguement))
-            print(bt.search(arguement))
+            start = time.time()
+            value = db.search(arguement)
+            end = time.time()
+            print("OPERATION: {}, TIME: {}s, RESULT: {}, ".format(operate, end-start, value))
         elif operate == "insert":
             [key, value] = arguement.split(",")
             try:
@@ -42,21 +43,25 @@ def operation(ht,bt):
                 value = int(value)
             except ValueError:
                 print("failt to parse the input",operate,key,value,seq=" ")
-            ht.insert(key,value)
-            bt.insert(key,value)
+            start = time.time()
+            db.insert(key,value)
+            end = time.time()
+            print("OPERATION: {}, TIME: {}s".format(operate, end-start))
         elif operate == "delete":
             try:
                 arguement = int(arguement)
             except ValueError:
                 print("fail to parse the input",operate, arguement,seq=" ")
-            ht.delete(arguement)
-            bt.delete(arguement)
+            start = time.time()
+            db.delete(arguement)
+            end = time.time()
+            print("OPERATION: {}, TIME: {}s".format(operate, end-start))
         else:
             print("fail to parse the operation",operate, arguement,seq=" ")
 
-
-if __name__ == "__main__":
-    ht = ht_database()
-    bt = bt_database()
-    insert(bt,ht)
-    operation(bt,ht)
+def print_result(db,file_name):
+    insert(db)
+    start = time.time()
+    operation(db,file_name)
+    end = time.time()
+    print("TOTAL TIME: {}s".format(end-start))
