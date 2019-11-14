@@ -9,7 +9,7 @@ Install B-trees,
 ```
 pip3 install BTrees
 ```
-Then run this script to test it.
+Then run these scripts to test it.
 ```
 python3 hash_table_db.py operations.txt
 python3 b_tree_db.py operations.txt
