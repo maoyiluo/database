@@ -35,7 +35,7 @@ def operation(db,file):
             start = time.time()
             value = db.search(arguement)
             end = time.time()
-            print("OPERATION: {}, TIME: {}s, RESULT: {}, ".format(operate, end-start, value))
+            print("OPERATION: {}, TIME: {:.2e}s, RESULT: {}".format(operate, float(end-start), value))
         elif operate == "insert":
             [key, value] = arguement.split(",")
             try:
@@ -46,7 +46,7 @@ def operation(db,file):
             start = time.time()
             db.insert(key,value)
             end = time.time()
-            print("OPERATION: {}, TIME: {}s".format(operate, end-start))
+            print("OPERATION: {}, TIME: {:.2e}s".format(operate, float(end-start)))
         elif operate == "delete":
             try:
                 arguement = int(arguement)
@@ -55,7 +55,7 @@ def operation(db,file):
             start = time.time()
             db.delete(arguement)
             end = time.time()
-            print("OPERATION: {}, TIME: {}s".format(operate, end-start))
+            print("OPERATION: {}, TIME: {:.2e}s".format(operate, float(end-start)))
         else:
             print("fail to parse the operation",operate, arguement,seq=" ")
 
@@ -64,4 +64,4 @@ def print_result(db,file_name):
     start = time.time()
     operation(db,file_name)
     end = time.time()
-    print("TOTAL TIME: {}s".format(end-start))
+    print("TOTAL TIME: {:.2e}s".format(float(end-start)))
