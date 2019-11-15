@@ -20,7 +20,7 @@ def insert(db):
             continue
         db.insert(key,value)
 
-def operation(db,file):
+def operation(db,file,output):
     file = open(file,'r')
     data = file.readlines()
     for entry in data:
@@ -35,7 +35,7 @@ def operation(db,file):
             start = time.time()
             value = db.search(arguement)
             end = time.time()
-            print("OPERATION: {}, TIME: {:.2e}s, RESULT: {}".format(operate, float(end-start), value))
+            output.write("OPERATION: {}, TIME: {:.2e}s, RESULT: {}\n".format(operate, float(end-start), value))
         elif operate == "insert":
             [key, value] = arguement.split(",")
             try:
@@ -46,7 +46,7 @@ def operation(db,file):
             start = time.time()
             db.insert(key,value)
             end = time.time()
-            print("OPERATION: {}, TIME: {:.2e}s".format(operate, float(end-start)))
+            output.write("OPERATION: {}, TIME: {:.2e}s\n".format(operate, float(end-start)))
         elif operate == "delete":
             try:
                 arguement = int(arguement)
@@ -55,13 +55,14 @@ def operation(db,file):
             start = time.time()
             db.delete(arguement)
             end = time.time()
-            print("OPERATION: {}, TIME: {:.2e}s".format(operate, float(end-start)))
+            output.write("OPERATION: {}, TIME: {:.2e}s\n".format(operate, float(end-start)))
         else:
-            print("fail to parse the operation",operate, arguement,seq=" ")
+            output.write("fail to parse the operation",operate, arguement,seq=" ")
 
-def print_result(db,file_name):
+def print_result(db,file_name,type):
     insert(db)
+    output = open("q1_ml6363_sl7151_{}_timing.txt".format(type),'w')
     start = time.time()
-    operation(db,file_name)
+    operation(db,file_name,output)
     end = time.time()
-    print("TOTAL TIME: {:.2e}s".format(float(end-start)))
+    output.write("TOTAL TIME: {:.2e}s".format(float(end-start)))
