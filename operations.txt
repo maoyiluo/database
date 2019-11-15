@@ -1,0 +1,5 @@
+search(27528)
+insert(83593,1)
+search(83593)
+delete(27528)
+search(27528)
