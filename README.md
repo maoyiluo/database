@@ -31,10 +31,10 @@ Each database is initialized with the data in `myindex.txt`, if you are going to
 The timing of each data structure will be stored in seperate `txt` file, named `q1_ml6363_sl7151_b_tree_timing.txt` and `q1_ml6363_sl7151_hash_table_timing.txt`  
 Here is an example of the output:
 ```
-OPERATION: search, TIME: 5.0067901611328125e-06s, RESULT: 19730, 
-OPERATION: insert, TIME: 4.0531158447265625e-06s
-OPERATION: search, TIME: 9.5367431640625e-07s, RESULT: 1, 
-OPERATION: delete, TIME: 4.0531158447265625e-06s
-OPERATION: search, TIME: 9.5367431640625e-07s, RESULT: NOT PRESENT, 
-TOTAL TIME: 0.0002911090850830078s
+OPERATION: search, TIME: 8.34e-06s, RESULT: 19730
+OPERATION: insert, TIME: 4.05e-06s
+OPERATION: search, TIME: 2.15e-06s, RESULT: 1
+OPERATION: delete, TIME: 3.10e-06s
+OPERATION: search, TIME: 1.19e-06s, RESULT: NOT PRESENT
+TOTAL TIME: 1.64e-04s
 ```
